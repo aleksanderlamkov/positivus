@@ -1,0 +1,21 @@
+.pagination {
+  &__list {
+    display: flex;
+  }
+
+  &__button {
+    @include reset-button;
+    @include flex-center;
+    @include square(24px);
+
+    color: var(--color-light);
+
+    @include hover {
+      color: var(--color-accent);
+    }
+
+    &.is-current {
+      color: var(--color-accent);
+    }
+  }
+}

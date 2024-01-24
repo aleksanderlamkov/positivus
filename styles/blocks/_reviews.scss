@@ -1,0 +1,74 @@
+.reviews {
+  display: flex;
+  flex-direction: column;
+  row-gap: 110px;
+  padding-top: 84px;
+  padding-bottom: 54px;
+  color: var(--color-light);
+  background-color: var(--color-dark);
+  border-radius: var(--border-radius-large);
+  overflow-x: hidden;
+
+  @include tablet {
+    padding: 30px 30px 46px;
+    row-gap: 46px;
+  }
+
+  &__slider {
+    --reviewsSliderSlideWidth: 606px;
+
+    @include tablet {
+      --reviewsSliderSlideWidth: 330px;
+    }
+
+    &-list {
+      display: flex;
+      column-gap: 50px;
+      scroll-snap-type: x mandatory;
+      overflow-x: scroll;
+
+      @include tablet-above {
+        margin-left: calc(var(--reviewsSliderSlideWidth) / 2 * -1);
+      }
+
+      @include tablet {
+        column-gap: 30px;
+      }
+    }
+
+    &-item {
+      min-width: var(--reviewsSliderSlideWidth);
+      scroll-snap-align: start;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 564px;
+    margin-inline: auto;
+  }
+
+  &__arrow-button {
+    @include reset-button;
+    @include flex-center;
+    @include square(48px);
+
+    color: var(--color-light);
+
+    @include hover {
+      color: var(--color-accent);
+    }
+
+    &[disabled] {
+      color: var(--color-gray-alt);
+      cursor: not-allowed;
+    }
+
+    svg {
+      @include square(20px);
+    }
+  }
+}

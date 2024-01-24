@@ -1,0 +1,118 @@
+.process {
+  &__list {
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+    counter-reset: custom-counter;
+    list-style: none;
+
+    @include mobile {
+      row-gap: 20px;
+    }
+  }
+
+  &__item {
+    --counterContent: counter(custom-counter);
+
+    counter-increment: custom-counter;
+
+    &:nth-child(-n + 9) {
+      --counterContent: '0' counter(custom-counter);
+    }
+  }
+
+  &__accordion {
+    --indicatorVerticalRotate: 90deg;
+
+    padding: 40px 60px;
+    background-color: var(--color-gray);
+    border: var(--border);
+    border-radius: var(--border-radius-large);
+    box-shadow: var(--shadow);
+    transition-duration: var(--transition-duration);
+
+    @include hover {
+      background-color: var(--color-accent);
+    }
+
+    @include mobile {
+      padding: 30px;
+    }
+
+    &[open] {
+      --indicatorVerticalRotate: 0deg;
+
+      background-color: var(--color-accent);
+    }
+
+    &-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      column-gap: 50px;
+      cursor: pointer;
+      user-select: none;
+
+      @include mobile {
+        column-gap: 28px;
+      }
+    }
+
+    &-title {
+      @include fluid-text(30, 18);
+
+      display: flex;
+      align-items: center;
+      column-gap: 25px;
+
+      @include mobile {
+        column-gap: 33px;
+      }
+
+      &::before {
+        content: var(--counterContent);
+        font-size: 2em;
+
+        @include mobile {
+          font-size: 30px;
+        }
+      }
+    }
+
+    &-indicator {
+      @include flex-center;
+      @include square(58px);
+
+      flex-shrink: 0;
+      position: relative;
+      background-color: var(--color-gray);
+      border: var(--border);
+      border-radius: 50%;
+
+      @include mobile {
+        width: 30px;
+      }
+
+      &::before,
+      &::after {
+        @include abs-center;
+
+        content: '';
+        width: 45%;
+        height: 10%;
+        background-color: var(--color-dark);
+      }
+
+      &::after {
+        rotate: var(--indicatorVerticalRotate);
+        transition-duration: var(--transition-duration);
+      }
+    }
+
+    &-body {
+      margin-top: 30px;
+      padding-top: 30px;
+      border-top: var(--border);
+    }
+  }
+}
